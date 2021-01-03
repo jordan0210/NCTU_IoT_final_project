@@ -11,11 +11,12 @@
 #define pin_mp3_RX
 
 const int keybroadBtn[16] = {
-  , , , ,
-  , , , ,
-  , , , ,
-  , , ,
+    917,894,871,857,
+    841,820,801,791,
+    778,763,746,735,
+    725,709,695,687,
 };
+
 
 int readKeybroadBtn(int pin);
 
