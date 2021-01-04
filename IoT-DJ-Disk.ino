@@ -14,23 +14,38 @@ void setup() {
   softwareSerial.begin(9600);
   while(!player.begin(softwareSerial)){}
   Serial.println("Player begin.");
-  player.volume(30);
-  player.play(1);
+  
+  player.volume(readVolume());
+  player.loop(currentMusic);
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
+  readkeybroadBtn(pin_keybroad1);
+  
   changeMusic();
+  
+}
+
+int readVolume(){
+  int value = map(analogRead(slider1), 0, 1023, 0, 30);
+  if (value < 0){
+    value = 0;
+  } else if (value > 30){
+    value = 30;
+  }
+
+  return value;
 }
 
 int readkeybroadBtn(int pin){
   int value = analogRead(pin);
-  for (int i=0; i<16; i++){
-    if (value < keybroadBtn[i]){
+  for (int i=1; i<=16; i++){
+    if (value <= keybroadBtn[i]*1.01 && value >= keybroadBtn[i]*0.99){
       return i;
     }
   }
-  return 16;
+  return 0;
 }
 
 void changeMusic(){
