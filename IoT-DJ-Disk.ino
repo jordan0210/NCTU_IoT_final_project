@@ -1,4 +1,5 @@
 #include "define.h"
+#include "keyBroad.h"
 
 #include "SoftwareSerial.h"
 #include "DFRobotDFPlayerMini.h"
@@ -11,6 +12,7 @@ int currentMusic = 1;
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
+  KeyboardCalibrator(pin_keybroad1);
   softwareSerial.begin(9600);
   while(!player.begin(softwareSerial)){}
   Serial.println("Player begin.");
@@ -24,11 +26,10 @@ void loop() {
   readkeybroadBtn(pin_keybroad1);
   
   changeMusic();
-  
 }
 
 int readVolume(){
-  int value = map(analogRead(slider1), 0, 1023, 0, 30);
+  int value = map(analogRead(pin_slider1), 0, 1023, 0, 30);
   if (value < 0){
     value = 0;
   } else if (value > 30){
