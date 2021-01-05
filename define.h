@@ -7,11 +7,11 @@
 #define pin_speaker1
 #define pin_speaker2
 #define pin_mp3Speaker
-#define pin_mp3_TX 2
-#define pin_mp3_RX 3
+#define pin_mp3_TX 10
+#define pin_mp3_RX 11
 
 int readVolume();
 
-int readKeybroadBtn(int pin);
+int readKeybroadBtn();
 
-void changeMusic();
+//void changeMusic();
